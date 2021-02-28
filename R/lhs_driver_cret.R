@@ -20,14 +20,14 @@ library(MASS)
 if(Sys.info()['user']=='tony') {
   # Tony's local machine (if you aren't me, you almost certainly need to change this...)
   machine <- 'local'
-  setwd('/Users/tony/codes/GEOCARB-calibration/R')
+  setwd('/Users/tony/codes/GEOCARB-precalibration/R')
 } else if(Sys.info()['user']=='aewsma') {
   machine <- 'office'
-  setwd('/Users/aewsma/codes/GEOCARB-calibration/R')
+  setwd('/Users/aewsma/codes/GEOCARB-precalibration/R')
 } else {
   # assume on another cluster of some kind...
   machine <- 'remote'
-  setwd('~/work/codes/GEOCARB-calibration/R')
+  setwd('~/work/codes/GEOCARB-precalibration/R')
 }
 
 ## Set testing number of samples and file name appendix here

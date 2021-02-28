@@ -119,21 +119,21 @@ for (bb in prc_outbound) {
         colnames(prcout[[bb]][[dd]]) <- c("co2","temp")
         model_hindcast[[bb]][[dd]]$co2 <- model_hindcast[[bb]][[dd]]$temp <- mat.or.vec(nr=58, nc=num_samples)
         for (ii in 1:num_samples) {
-            model_out <- model_forMCMC(par_calib=par_calib[[bb]][[dd]][idx_sample[[bb]][[dd]][ii],],
-                                       par_time=par_time[[bb]][[dd]][,idx_sample[[bb]][[dd]][ii],],
-                                       par_fixed=par_const_fixed0,
-                                       parnames_calib=parnames_const_calib,
-                                       parnames_fixed=parnames_const_fixed,
-                                       parnames_time=parnames_time_calib,
-                                       age=age,
-                                       ageN=ageN,
-                                       ind_const_calib=ind_const_calib,
-                                       ind_time_calib=ind_time_calib,
-                                       ind_const_fixed=ind_const_fixed,
-                                       ind_time_fixed=ind_time_fixed,
-                                       ind_expected_time=ind_expected_time,
-                                       ind_expected_const=ind_expected_const,
-                                       iteration_threshold=iteration_threshold)
+            model_out <- model_run(par_calib=par_calib[[bb]][[dd]][idx_sample[[bb]][[dd]][ii],],
+                                   par_time=par_time[[bb]][[dd]][,idx_sample[[bb]][[dd]][ii],],
+                                   par_fixed=par_const_fixed0,
+                                   parnames_calib=parnames_const_calib,
+                                   parnames_fixed=parnames_const_fixed,
+                                   parnames_time=parnames_time_calib,
+                                   age=age,
+                                   ageN=ageN,
+                                   ind_const_calib=ind_const_calib,
+                                   ind_time_calib=ind_time_calib,
+                                   ind_const_fixed=ind_const_fixed,
+                                   ind_time_fixed=ind_time_fixed,
+                                   ind_expected_time=ind_expected_time,
+                                   ind_expected_const=ind_expected_const,
+                                   iteration_threshold=iteration_threshold)
             prcout[[bb]][[dd]][ii,"co2"] <- percout(model_out[,"co2"], windows$co2)
             prcout[[bb]][[dd]][ii,"temp"] <- percout(model_out[,"temp"] + 15, windows$temp)
             model_hindcast[[bb]][[dd]]$co2[,ii] <- model_out[,"co2"]
@@ -390,6 +390,7 @@ mtext("Sample size", side=2, line=3.3)
 axis(side=2, at=yvals, labels=nn_test[1:length(yvals)], las=1)
 minor.tick(ny=0)
 dev.off()
+
 ##==============================================================================
 
 

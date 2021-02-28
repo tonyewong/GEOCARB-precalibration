@@ -187,7 +187,7 @@ for (ee in supp_names) {
   prcout_supp[[ee]] <- mat.or.vec(nr=num_samples, nc=2)
   colnames(prcout_supp[[ee]]) <- c("co2","temp")
   for (ii in 1:num_samples) {
-      model_out <- model_forMCMC_supp(par_calib=par_calib_supp[[ee]][ii,],
+      model_out <- model_run_supp(par_calib=par_calib_supp[[ee]][ii,],
                                  par_time=par_time_supp[[ee]][,ii,],
                                  par_fixed=par_const_fixed0,
                                  parnames_calib=parnames_const_calib,

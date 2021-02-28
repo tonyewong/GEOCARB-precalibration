@@ -9,14 +9,14 @@ library("Hmisc")
 if(Sys.info()['user']=='tony') {
   # Tony's local machine (if you aren't me, you almost certainly need to change this...)
   machine <- 'local'
-  setwd('/Users/tony/codes/GEOCARB-calibration/R')
+  setwd('/Users/tony/codes/GEOCARB-precalibration/R')
 } else if(Sys.info()['user']=='aewsma') {
   machine <- 'office'
-  setwd('/Users/aewsma/codes/GEOCARB-calibration/R')
+  setwd('/Users/aewsma/codes/GEOCARB-precalibration/R')
 } else {
   # assume on another cluster of some kind...
   machine <- 'remote'
-  setwd('~/work/codes/GEOCARB-calibration/R')
+  setwd('~/work/codes/GEOCARB-precalibration/R')
 }
 
 idx_cret <- c(49)
@@ -313,10 +313,6 @@ pdf_cret <- density(par_calib_cret30[,match("deltaT2X", parnames_const)], from=1
 pdf_cret_glac <- density(par_calib_cret30[,match("deltaT2X", parnames_const)]*par_calib_cret30[,match("GLAC", parnames_const)], from=1.5, to=20)
 save(list=c("pdf_cret","pdf_cret_glac"), file="../output/pdf_cret.RData")
 
-## deltaT2X density plots  <------ here now! finishing polishing the figure up
-## deltaT2X density plots  <------ here now! finishing polishing the figure up
-## deltaT2X density plots  <------ here now! finishing polishing the figure up
-
 pdf('../figures/deltaT2X_cret.pdf',width=4,height=3, colormodel='cmyk', pointsize=11)
 par(mfrow=c(1,1), mai=c(.7,.35,.13,.15))
 plot(kdes$ctrl$deltaT2X$x, kdes$ctrl$deltaT2X$y, type='l', lwd=1.5, col='steelblue', lty=1,
@@ -325,7 +321,7 @@ lines(kdes$cret$deltaT2X$x, kdes$cret$deltaT2X$y, lwd=1.5, lty=5, col='firebrick
 mtext(expression(Delta*"T"['2x']*" ("*degree*"C)"), side=1, line=2.3)
 mtext('Density', side=2, line=0.3)
 minor.tick(nx=2, ny=0, tick.ratio=0.5)
-arrows(1.6, 0, 1.65, .85, length=0.08, angle=30, code=2)
+arrows(1.6, 0, 1.6, .85, length=0.08, angle=30, code=2)
 legend(3.6, 0.85, c("Cretaceous-matching", "Control"), lty=c(5,1), lwd=1.5, col=c("firebrick", "steelblue"), bty="n")
 dev.off()
 
