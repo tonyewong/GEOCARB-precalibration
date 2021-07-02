@@ -137,7 +137,7 @@ for (bb in prc_outbound) {
             prcout[[bb]][[dd]][ii,"co2"] <- percout(model_out[,"co2"], windows$co2)
             prcout[[bb]][[dd]][ii,"temp"] <- percout(model_out[,"temp"] + 15, windows$temp)
             model_hindcast[[bb]][[dd]]$co2[,ii] <- model_out[,"co2"]
-            model_hindcast[[bb]][[dd]]$temp[,ii] <- model_out[,"temp"] + par_time[[bb]][[dd]][, ii, match("GEOG",parnames_time)] + 15 # as in Berner 2004
+            model_hindcast[[bb]][[dd]]$temp[,ii] <- model_out[,"temp"] + par_time[[bb]][[dd]][, idx_sample[[bb]][[dd]][ii], match("GEOG",parnames_time)] + 15 # as in Berner 2004
             # ^-- temperatures in model output already include the Ws solar luminosity term to be akin to Mills et al windows. Just need GEOG.
 #            model_hindcast[[bb]][[dd]]$temp[,ii] <- model_out[,"temp"] + par_calib[[bb]][[dd]][idx_sample[[bb]][[dd]][ii],"Ws"]*model_out[,1]/570 + 15 # as in Berner 2004
         }
